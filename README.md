@@ -71,3 +71,9 @@ No es indispensable contar con un emulador Android o dispositivo físico, ya que
 Para iniciar la aplicación en navegador, utilizar: flutter run -d chrome
 
 ---
+
+## Diagrama de clases primera iteración realizado en la materia Análisis y Diseño de sistemas en el primer cuatrimestre y en el cual está basado el proyecto
+
+![Diagrama de clases](docs/Diagrama de clases primera iteracion_v2.png)
+
+---
