@@ -69,4 +69,5 @@ Para visualizar y ejecutar el proyecto es necesario contar con el entorno de des
 No es indispensable contar con un emulador Android o dispositivo físico, ya que Flutter permite ejecutar el proyecto directamente en navegador web.
 
 Para iniciar la aplicación en navegador, utilizar: flutter run -d chrome
+
 ---
