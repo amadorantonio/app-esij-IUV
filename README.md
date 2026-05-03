@@ -70,10 +70,22 @@ No es indispensable contar con un emulador Android o dispositivo físico, ya que
 
 Para iniciar la aplicación en navegador, utilizar: flutter run -d chrome
 
+El uso del paquete sqflite requiere que la aplicación se ejecute en un entorno Android (dispositivo físico o emulador), ya que depende de funcionalidades nativas para la gestión de bases de datos SQLite.
+
 ---
 
 ## Diagrama de clases primera iteración realizado en la materia Análisis y Diseño de sistemas en el primer cuatrimestre y en el cual está basado el proyecto
 
 ![Diagrama de clases](docs/diagrama.png)
+
+---
+
+## Nuevas funcionalidades implementadas
+
+Se integraron diversos paquetes para ampliar las capacidades de la aplicación, mejorando la persistencia de datos, la comunicación con servicios externos y la interacción con el usuario en tiempo real.
+
+- sqflite para almacenamiento local
+- http para consumo de servicios web
+- Firebase Cloud Messaging para notificaciones push
 
 ---

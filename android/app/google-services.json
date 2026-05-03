@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "165586189193",
+    "project_id": "app-escuela-judicial",
+    "storage_bucket": "app-escuela-judicial.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165586189193:android:9fbcf3ff00d2cb54c57f58",
+        "android_client_info": {
+          "package_name": "com.example.app_escuela_judicial"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBopBlEZ4lPw8nMVDEOFl0JpHYrzi-n4ks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
