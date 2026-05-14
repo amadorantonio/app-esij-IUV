@@ -78,6 +78,9 @@ class DatabaseHelper {
     final db = await instance.database;
 
     final dashboardResult = await db.query('dashboard');
+    if (dashboardResult.isEmpty) {
+      return null;
+    }
     final dashboardData = dashboardResult.first;
     final dashboardId = dashboardData['id'];
 

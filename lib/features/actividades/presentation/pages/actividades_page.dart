@@ -8,7 +8,11 @@ class ActividadesPage extends StatefulWidget {
   final GetActividades getActividades;
   final NotificationLocalService notificationService;
 
-  const ActividadesPage({super.key, required this.getActividades, required this.notificationService,});
+  const ActividadesPage({
+    super.key,
+    required this.getActividades,
+    required this.notificationService,
+  });
 
   @override
   State<ActividadesPage> createState() => _ActividadesPageState();
@@ -33,8 +37,10 @@ class _ActividadesPageState extends State<ActividadesPage> {
         isLoading = false;
       });
     } catch (e) {
+      debugPrint('ERROR ACTIVIDADES: $e');
+
       setState(() {
-        errorMessage = 'Error al cargar las actividades';
+        errorMessage = '$e';
         isLoading = false;
       });
     }
@@ -44,7 +50,11 @@ class _ActividadesPageState extends State<ActividadesPage> {
   Widget build(BuildContext context) {
     /// LOADING
     if (isLoading) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator(color: Color(0xFF165375))));
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(color: Color(0xFF165375)),
+        ),
+      );
     }
 
     /// ERROR
@@ -61,7 +71,10 @@ class _ActividadesPageState extends State<ActividadesPage> {
         itemCount: actividades.length,
 
         itemBuilder: (context, index) {
-          return ActividadCard(actividad: actividades[index], notificationService: widget.notificationService,);
+          return ActividadCard(
+            actividad: actividades[index],
+            notificationService: widget.notificationService,
+          );
         },
       ),
     );

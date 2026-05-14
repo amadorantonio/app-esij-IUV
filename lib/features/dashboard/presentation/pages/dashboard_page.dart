@@ -27,16 +27,14 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   Future<bool> hayInternet() async {
-  final result = await Connectivity().checkConnectivity();
+    final result = await Connectivity().checkConnectivity();
 
-  return !result.contains(ConnectivityResult.none);
-}
+    return !result.contains(ConnectivityResult.none);
+  }
 
   Future<void> cargarDashboard() async {
-    /// Comprobar conexión a internet
     final online = await hayInternet();
 
-    /// Intentar cargar desde SQLite
     final dashboardLocal = await DatabaseHelper.instance.getDashboard();
 
     if (dashboardLocal != null) {
@@ -50,34 +48,47 @@ class _DashboardPageState extends State<DashboardPage> {
           const SnackBar(
             backgroundColor: Colors.amber,
             behavior: SnackBarBehavior.floating,
-            content: Text('Mostrando datos almacenados localmente', style: TextStyle(color: Colors.black),),
+            content: Text(
+              'Mostrando datos almacenados localmente',
+              style: TextStyle(color: Colors.black),
+            ),
           ),
         );
       }
     }
 
-    /// Si no hay internet, salir
+    if (!online && dashboardLocal == null) {
+      setState(() {
+        errorMessage = 'Sin conexión y sin datos almacenados localmente';
+        isLoading = false;
+      });
+      return;
+    }
+
     if (!online) return;
 
     try {
       final resultado = await widget.getDashboard();
+
       setState(() {
         dashboard = resultado;
         isLoading = false;
       });
+
       await guardarDashboard(resultado);
+
       if (!mounted) return;
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Colors.green,
           behavior: SnackBarBehavior.floating,
-          content: Text(
-            'Dashboard de ${dashboard!.nombre} guardado localmente',
-          ),
+          content: Text('Dashboard de ${resultado.nombre} actualizado'),
         ),
       );
     } catch (e) {
       if (dashboard != null) return;
+
       setState(() {
         errorMessage = 'Error al cargar el dashboard';
         isLoading = false;
@@ -99,7 +110,11 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     /// LOADING
     if (isLoading) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator(color: Color(0xFF165375))));
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(color: Color(0xFF165375)),
+        ),
+      );
     }
 
     /// ERROR
